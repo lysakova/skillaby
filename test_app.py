@@ -90,7 +90,7 @@ def test_skills_default_profile(client):
         os.environ,
         {"LINKEDIN_USERNAME": "user@example.com", "LINKEDIN_PASSWORD": "secret"},
     ):
-        with patch("app.Linkedin") as MockLinkedin:
+        with patch("app.Linkedin") as MockLinkedin, patch("app.save_to_csv"):
             instance = MockLinkedin.return_value
             instance.get_profile_skills.return_value = mock_skills
 
@@ -110,7 +110,7 @@ def test_skills_custom_profile(client):
         os.environ,
         {"LINKEDIN_USERNAME": "user@example.com", "LINKEDIN_PASSWORD": "secret"},
     ):
-        with patch("app.Linkedin") as MockLinkedin:
+        with patch("app.Linkedin") as MockLinkedin, patch("app.save_to_csv"):
             instance = MockLinkedin.return_value
             instance.get_profile_skills.return_value = mock_skills
 
